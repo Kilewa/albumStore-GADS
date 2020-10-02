@@ -22,11 +22,7 @@ import { ProductService } from './product.service';
     HttpModule,
     ProductService,
   ],
-  providers: [
-    ProductService,
-  ],
-    
-  
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
