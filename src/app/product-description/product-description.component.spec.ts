@@ -1,25 +1,21 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
 
-import { ProductDescriptionComponent } from './product-description.component';
+import { ProductService } from '../product.service';
 
-describe('ProductDescriptionComponent', () => {
-  let component: ProductDescriptionComponent;
-  let fixture: ComponentFixture<ProductDescriptionComponent>;
+import { Album } from '../album';
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ProductDescriptionComponent ]
-    })
-    .compileComponents();
-  }));
+@Component({
+  selector: 'app-product-description',
+  templateUrl: './product-description.component.html',
+  styleUrls: ['./product-description.component.css']
+})
+export class ProductDescriptionComponent implements OnInit {
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ProductDescriptionComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  albumInfo: Album;
+  constructor( private _productService: ProductService) { }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  ngOnInit() {
+    this._productService.getAlbum(1).subscribe(response => this.albumInfo = response);
+  }
+
+}
